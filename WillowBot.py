@@ -5,7 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-pyautogui.FAILSAFE = True ## This enables you to cancel 
+pyautogui.FAILSAFE = True ## This enables you to cancel script by moving mouse to furthest top left corner. Or press CTRL + C to cancel
 
 
 ## Oak logs bank run, only works near west varrock oak logs, definitely not done with this function. Not called by default
