@@ -15,9 +15,9 @@ The banking function created in this script will only work if you execute the sc
 - cd to script installation directory
 
 **HOW TO USE:**
+- Move your OSRS character to East Port Sarim willow trees (to the right of the bar there are 4 willow trees)
 - python WillowBot.py
-- CTRL+C to cancel script execution
-- Must be run in East Port Sarim next to the 4 willow trees
+- CTRL+C to cancel script execution for whatever reason. Can always be restarted in this same location.
 
 **TIPS:**
-- If you're having trouble with accuracy, try to imitate the screen resolution/zoom/camera angle shown in the above youtube video. Also, while not mandatory, having sprint enabled makes script much more smooth. This is by no means a finished product, but it's a start!
+- If you're having trouble with accuracy, try to imitate the screen resolution/zoom/camera angle shown in the above youtube video. This is extremely important for script functionality! Also, while not mandatory, having sprint enabled makes script much more smooth. This is by no means a finished product, but it's a start!
