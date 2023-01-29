@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 pyautogui.FAILSAFE = True ## This enables you to cancel 
 
 
-
+## Oak logs bank run, only works near west varrock oak logs, definitely not done with this function. Not called by default
 def bankRun():
     count = 0
     topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
@@ -30,7 +30,7 @@ def bankRun():
         print('damn cant find...')
         time.sleep(5)
 
-
+## Returns user back from draynor bank to East Port Sarim
 def returnbackBank():
     time.sleep(3)
     count = 0
@@ -58,7 +58,7 @@ def returnbackBank():
 
 
 
-
+## Runs to the bank from East Port Sarim willow trees to draynor village
 def willowbankRun():
     count = 0
     topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
@@ -172,7 +172,7 @@ def willowbankRun():
         print('damn cant find...')
         time.sleep(5)
 
-
+## This function detects and cuts willow trees, and then calls the bank function when a full inventory is detected
 def willowTrees():
     allTrees = ["willow.png", "willow2.png", "willow3.png", "willow4.png"]
     count = 0
@@ -211,7 +211,7 @@ def willowTrees():
 
 willowTrees()
 
-
+## This is the function for woodcutting oak logs. Best location is west varrock
 def oakLogs():
     allTrees = ["oak9.png", "oak10.png", "oak6.png", "oak7.png", "oak8.png", "oak4.png", "oak5.png", "oak2.png", "oak.png", "oak3.png"]
     count = 0
@@ -246,7 +246,7 @@ def oakLogs():
                         continue           
 #oakLogs()
 
-
+## Woodcutting function for regular logs
 def regularLogs():
     allTrees = ["exact.png", "exact2.png", "pinetree2.png", "exact3.png", "exact4.png", "exact5.png", "pinetree.png", "leaves.png"]
     count = 0
@@ -270,7 +270,6 @@ def regularLogs():
                     count = 0
                 count += 1
 
-#regularLogs()
 
 
 
