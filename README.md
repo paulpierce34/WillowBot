@@ -16,7 +16,9 @@ The banking function created in this script will only work if you execute the sc
 
 **HOW TO USE:**
 - Move your OSRS character to East Port Sarim willow trees (to the right of the bar there are 4 willow trees)
-- python WillowBot.py
+- Open up a powershell or cmd prompt in another window
+- cd to the script installation directory: type "cd C:\Users\example\Documents\WillowBot\"
+- type "python WillowBot.py"
 - CTRL+C to cancel script execution for whatever reason. Can always be restarted in this same location.
 
 **TIPS:**
