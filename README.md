@@ -12,7 +12,6 @@ The banking function created in this script will only work if you execute the sc
 **HOW TO SETUP:**
 - git clone repo
 - pip install requirements.txt
-- cd to script installation directory
 
 **HOW TO USE:**
 - Move your OSRS character to East Port Sarim willow trees (to the right of the bar there are 4 willow trees)
