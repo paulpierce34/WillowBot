@@ -166,6 +166,10 @@ def willowbankRun():
                 pyautogui.move(135, 90) ## moves cursor on the x axis away from the compass
                 pyautogui.click()
                 time.sleep(40)
+                print ('Adjusting cursor upwards..')
+                pyautogui.move(0, -50)
+                pyautogui.click()
+                time.sleep(10)
                 count += 1    
             
     else:
