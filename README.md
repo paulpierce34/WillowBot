@@ -9,7 +9,7 @@ https://www.youtube.com/watch?v=Ip6CktKNvgI
 The banking function created in this script will only work if you execute the script while standing in East Port Sarim next to the willow trees. Other than that, script will only work for woodcutting in other locations.
 
 **PREREQS:**
-- Python (tested on 3.11.1 and 3.10.8)
+- Python3 (tested on 3.11.1 and 3.10.8)
 
 **HOW TO SETUP:**
 - git clone repo
