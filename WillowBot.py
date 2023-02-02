@@ -3,8 +3,7 @@ import pyautogui
 import cv2
 
 
-pyautogui.FAILSAFE = True ## This enables you to cancel script execution by pressing CTRL+C or moving mouse to upper leftwards corner of screen
-
+pyautogui.FAILSAFE = True ## This enables you to cancel 
 
 
 ## returns back from Draynor village bank to East Port Sarim willow trees
@@ -34,6 +33,7 @@ def detectBankTeller():
     bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.35)
     fullinventory = pyautogui.locateOnScreen("fullinventory.png", confidence=0.8)
                     # detect bankteller
+    print ('Looking for bank teller')    
     if (bankteller):
         count1 = 0
         while (count1 < 2):
@@ -71,6 +71,7 @@ def detectBankTeller():
                     except:
                         print ('Did not detect inventory...')
                                     
+
 ## Used for oak logs in west varrock, very trash function, not really working yet at all. Only runs to bank
 def bankRun():
     count = 0
@@ -101,9 +102,9 @@ def willowbankRun():
     #banklocation = pyautogui.locateOnScreen("portsarim_bank.png", confidence=0.39)
     #bankteller = pyautogui.locateOnScreen("bankteller2.png", confidence=0.35) ##.27 worked pretty good
     fullinventory = pyautogui.locateOnScreen("fullinventory.png", confidence=0.8)
-    print ('Exeucting bank run script...')
+    print ('Executing bank run script...')
     if (topCompass):
-        while (count < 1):
+        while (count < 2):
                 try:
                     banklocation = pyautogui.locateOnScreen("portsarim_bank2.png", confidence=0.32) ## .37 worked alright
                     banklocation = pyautogui.locateOnScreen("portsarim_bank3.png", confidence=0.32) ## .37 worked alright
@@ -114,26 +115,34 @@ def willowbankRun():
                     pyautogui.moveTo(banklocation, duration=1)
                     pyautogui.click()
                     time.sleep(16)
-
                     detectBankTeller() ## Try to detect bank teller
-
-                ## if bank location is not detected then do the below...
                 else:
                     print ("Unable to detect bank location. Sleeping and retrying.")
                     detectBankTeller()
                     time.sleep(3)
                 
-                ## While count is less than 2 click to the right side of mini map to get to bank area 
-                print ('Moving towards bank...')
-                pyautogui.moveTo(topCompass, duration=1) ## brings cursor to the top compass minimap thingy
-                pyautogui.move(135, 90) ## moves cursor on the x axis away from the compass
-                pyautogui.click()
-                time.sleep(40)
-                print ('Adjusting cursor upwards..')
-                pyautogui.move(0, -35)
-                pyautogui.click()
-                time.sleep(10)
-                count += 1
+                 
+                #Keep in mind the willowTrees() function is an infinite loop that will always call this function if a full inventory is detected, and if no bank location is found this piece of code will continue to execute and move your character.
+                
+                ## While count is less than 1 click to the right side of mini map to get to bank area.
+                if (count < 1):
+                    print ('Moving towards bank...')
+                    pyautogui.moveTo(topCompass, duration=1) ## brings cursor to the top compass minimap thingy
+                    pyautogui.move(135, 90) ## This will be the first click from the trees to get to the bank
+                    pyautogui.click()
+                    time.sleep(40) ## Sleep timer is so high to account for people that have to walk
+                    print ('Adjusting cursor upwards..')
+                    pyautogui.move(0, -35)
+                    pyautogui.click()
+                    time.sleep(10)
+                    count += 1
+                #If we've already moved near the bank, and we still can't detect it, what the fook, lets trace our steps backwards a little and try to get close enough to detect bank
+                if (count == 1):
+                    pyautogui.move(0, 33)
+                    pyautogui.move(-135, -90)
+                    pyautogui.click()
+                    count += 1
+                    
             
     else:
         print('damn cant find...')
@@ -158,7 +167,7 @@ def willowTrees():
                 centeroftree = pyautogui.center(treelocation)
                 pyautogui.moveTo(centeroftree, duration=1)
                 pyautogui.click()
-                time.sleep(30)
+                time.sleep(16)
                  ## Break out of for loop so we restart the process and begin searching for first pic in array
                 break
             else:
