@@ -1,14 +1,12 @@
 import time
 import pyautogui
-import cv2 as cv
-import numpy as np
-from matplotlib import pyplot as plt
+import cv2
 
 
-pyautogui.FAILSAFE = True ## This enables you to cancel script by moving mouse to furthest top left corner. Or press CTRL + C to cancel
+pyautogui.FAILSAFE = True ## This enables you to cancel 
 
 
-## Oak logs bank run, only works near west varrock oak logs, definitely not done with this function. Not called by default
+
 def bankRun():
     count = 0
     topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
@@ -30,7 +28,7 @@ def bankRun():
         print('damn cant find...')
         time.sleep(5)
 
-## Returns user back from draynor bank to East Port Sarim
+
 def returnbackBank():
     time.sleep(3)
     count = 0
@@ -53,12 +51,52 @@ def returnbackBank():
         time.sleep(5)
 
 
+def detectBankTeller(): 
+    bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.35)
+    fullinventory = pyautogui.locateOnScreen("fullinventory.png", confidence=0.8)
+                    # detect bankteller
+    if (bankteller):
+        count1 = 0
+        while (count1 < 2):
+            count1 += 1
+            print('Wait...... I see the bankteller now')
+            #centerofteller = pyautogui.center(bankteller)
+            pyautogui.moveTo(bankteller, duration=1)
+            pyautogui.click()  ## This click should open up bank
+            bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5) ##  .6 works pretty well
+            time.sleep(5)
+            # detect if the bank is open
+            if (bankinventory):
+                print ('Detected bank inventory opened up')
+                pyautogui.moveTo(fullinventory, duration=1)
+                pyautogui.move(20, 50)
+                pyautogui.click(button='right')
+                pyautogui.move(0, 80)
+                pyautogui.click()
+                returnbackBank() ## call a return back function
+            else:
+                time.sleep(2)
+                count2 = 0
+                while (count2 < 2):
+                    try:
+                        count2 += 1
+                        bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5)
+                        if (bankinventory):
+                            print ('Detected bank inventory opened up')
+                            pyautogui.moveTo(fullinventory, duration=1)
+                            pyautogui.move(20, 50)
+                            pyautogui.click(button='right')
+                            pyautogui.move(0, 80)
+                            pyautogui.click()
+                            returnbackBank()
+                    except:
+                        print ('Did not detect inventory...')
+                                    
 
 
 
 
 
-## Runs to the bank from East Port Sarim willow trees to draynor village
 def willowbankRun():
     count = 0
     topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
@@ -67,7 +105,7 @@ def willowbankRun():
     fullinventory = pyautogui.locateOnScreen("fullinventory.png", confidence=0.8)
     print ('Exeucting bank run script...')
     if (topCompass):
-        while (count < 2):
+        while (count < 1):
                 try:
                     banklocation = pyautogui.locateOnScreen("portsarim_bank2.png", confidence=0.32) ## .37 worked alright
                     banklocation = pyautogui.locateOnScreen("portsarim_bank3.png", confidence=0.32) ## .37 worked alright
@@ -78,86 +116,13 @@ def willowbankRun():
                     pyautogui.moveTo(banklocation, duration=1)
                     pyautogui.click()
                     time.sleep(16)
-                bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.35)    
-                if (bankteller):
-                    count1 = 0
-                    while (count1 < 2):
-                        count1 += 1
-                        print('Wait...... I see the bankteller now')
-                        #centerofteller = pyautogui.center(bankteller)
-                        pyautogui.moveTo(bankteller, duration=1)
-                        pyautogui.click()  ## This click should open up bank
-                        bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5) ##  .6 works pretty well
-                        time.sleep(5)
-                    if (bankinventory):
-                        print ('Detected bank inventory opened up')
-                        pyautogui.moveTo(fullinventory, duration=1)
-                        pyautogui.move(20, 50)
-                        pyautogui.click(button='right')
-                        pyautogui.move(0, 80)
-                        pyautogui.click()
-                        returnbackBank() ## call a return back function now I guess
-                    else:
-                        time.sleep(2)
-                        count2 = 0
-                        while (count2 < 2):
-                            try:
-                                count2 += 1
-                                bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5)
-                                if (bankinventory):
-                                    print ('Detected bank inventory opened up')
-                                    pyautogui.moveTo(fullinventory, duration=1)
-                                    pyautogui.move(20, 50)
-                                    pyautogui.click(button='right')
-                                    pyautogui.move(0, 80)
-                                    pyautogui.click()
-                                    returnbackBank()
-                            except:
-                                print ('Did not detect inventory...')
+
+                    detectBankTeller() ## Try to detect bank teller
+
+                ## if bank location is not detected then do the below...
                 else:
-                    print ("Unable to detect bank teller. Sleeping and retrying.")
-                    bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.34)
-                    #### BOILER PLATE BEGIN
-                    if (bankteller):
-                        count1 = 0
-                        while (count1 < 2):
-                            count1 += 1
-                            print('Wait...... I see the bankteller now... boiler plate section')
-                            #centerofteller = pyautogui.center(bankteller)
-                            pyautogui.moveTo(bankteller, duration=1)
-                            pyautogui.click()  ## This click should open up bank
-                            bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5) ##  .6 works pretty well
-                            time.sleep(5)
-                            if (bankinventory):
-                                print ('Detected bank inventory opened up')
-                                pyautogui.moveTo(fullinventory, duration=1)
-                                pyautogui.move(20, 50)
-                                pyautogui.click(button='right')
-                                pyautogui.move(0, 80)
-                                pyautogui.click()
-                                returnbackBank() ## call a return back function now I guess
-                            else:
-                                time.sleep(2)
-                                count2 = 0
-                                while (count2 < 2):
-                                    try:
-                                        count2 += 1
-                                        bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5)
-                                        if (bankinventory):
-                                            print ('Detected bank inventory opened up')
-                                            pyautogui.moveTo(fullinventory, duration=1)
-                                            pyautogui.move(20, 50)
-                                            pyautogui.click(button='right')
-                                            pyautogui.move(0, 80)
-                                            pyautogui.click()
-                                            returnbackBank()
-                                    except:
-                                        print ('Did not detect inventory...')
-                        
-                    
-                    bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.32)
-                    print (bankteller)
-                    #### BOILER PLATE END
+                    print ("Unable to detect bank location. Sleeping and retrying.")
+                    detectBankTeller()
                     time.sleep(3)
                 
                 ## While count is less than 2 click to the right side of mini map to get to bank area 
@@ -167,16 +132,16 @@ def willowbankRun():
                 pyautogui.click()
                 time.sleep(40)
                 print ('Adjusting cursor upwards..')
-                pyautogui.move(0, -50)
+                pyautogui.move(0, -35)
                 pyautogui.click()
                 time.sleep(10)
-                count += 1    
+                count += 1
             
     else:
         print('damn cant find...')
         time.sleep(5)
 
-## This function detects and cuts willow trees, and then calls the bank function when a full inventory is detected
+
 def willowTrees():
     allTrees = ["willow.png", "willow2.png", "willow3.png", "willow4.png"]
     count = 0
@@ -195,7 +160,7 @@ def willowTrees():
                 centeroftree = pyautogui.center(treelocation)
                 pyautogui.moveTo(centeroftree, duration=1)
                 pyautogui.click()
-                time.sleep(40)
+                time.sleep(30)
                  ## Break out of for loop so we restart the process and begin searching for first pic in array
                 break
             else:
@@ -215,7 +180,7 @@ def willowTrees():
 
 willowTrees()
 
-## This is the function for woodcutting oak logs. Best location is west varrock
+
 def oakLogs():
     allTrees = ["oak9.png", "oak10.png", "oak6.png", "oak7.png", "oak8.png", "oak4.png", "oak5.png", "oak2.png", "oak.png", "oak3.png"]
     count = 0
@@ -250,7 +215,7 @@ def oakLogs():
                         continue           
 #oakLogs()
 
-## Woodcutting function for regular logs
+
 def regularLogs():
     allTrees = ["exact.png", "exact2.png", "pinetree2.png", "exact3.png", "exact4.png", "exact5.png", "pinetree.png", "leaves.png"]
     count = 0
@@ -274,6 +239,7 @@ def regularLogs():
                     count = 0
                 count += 1
 
+#regularLogs()
 
 
 
