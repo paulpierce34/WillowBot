@@ -3,32 +3,11 @@ import pyautogui
 import cv2
 
 
-pyautogui.FAILSAFE = True ## This enables you to cancel 
+pyautogui.FAILSAFE = True ## This enables you to cancel script execution by pressing CTRL+C or moving mouse to upper leftwards corner of screen
 
 
 
-def bankRun():
-    count = 0
-    topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
-    banklocation = pyautogui.locateOnScreen("bank.png", confidence=0.45)
-    if (topCompass):
-        while (count < 4):
-            if (banklocation):
-                print('True...... I see the bank')
-                pyautogui.moveTo(banklocation, duration=1)
-                pyautogui.click()
-                break
-            pyautogui.moveTo(topCompass, duration=1) ## brings cursor to the top compass minimap thingy
-            pyautogui.move(90, 0) ## moves cursor on the x axis away from the compass
-            pyautogui.click()
-            time.sleep(5)
-            count += 1
-            
-    else:
-        print('damn cant find...')
-        time.sleep(5)
-
-
+## returns back from Draynor village bank to East Port Sarim willow trees
 def returnbackBank():
     time.sleep(3)
     count = 0
@@ -50,7 +29,7 @@ def returnbackBank():
         print('damn cant find top compass... adjust confidence level in script for topCompass variable')
         time.sleep(5)
 
-
+## Tries to detect bank teller in draynor village
 def detectBankTeller(): 
     bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.35)
     fullinventory = pyautogui.locateOnScreen("fullinventory.png", confidence=0.8)
@@ -92,11 +71,30 @@ def detectBankTeller():
                     except:
                         print ('Did not detect inventory...')
                                     
+## Used for oak logs in west varrock, very trash function, not really working yet at all. Only runs to bank
+def bankRun():
+    count = 0
+    topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
+    banklocation = pyautogui.locateOnScreen("bank.png", confidence=0.45)
+    if (topCompass):
+        while (count < 4):
+            if (banklocation):
+                print('True...... I see the bank')
+                pyautogui.moveTo(banklocation, duration=1)
+                pyautogui.click()
+                break
+            pyautogui.moveTo(topCompass, duration=1) ## brings cursor to the top compass minimap thingy
+            pyautogui.move(90, 0) ## moves cursor on the x axis away from the compass
+            pyautogui.click()
+            time.sleep(5)
+            count += 1
+            
+    else:
+        print('damn cant find...')
+        time.sleep(5)
 
 
-
-
-
+## This function actually works. Runs from Willow Trees to Draynor Village Bank and then calls the detectBankTeller function if a bank is found on minimap first
 def willowbankRun():
     count = 0
     topCompass = pyautogui.locateOnScreen("compass.png", confidence=0.4)
@@ -141,7 +139,7 @@ def willowbankRun():
         print('damn cant find...')
         time.sleep(5)
 
-
+## This function looks for willow trees to cut them down. Replace these .png with your own images if you want, or tweak the 'confidence' level of the locateonScreen methods
 def willowTrees():
     allTrees = ["willow.png", "willow2.png", "willow3.png", "willow4.png"]
     count = 0
@@ -180,7 +178,7 @@ def willowTrees():
 
 willowTrees()
 
-
+## This function is used to cut oak logs. Not called by default
 def oakLogs():
     allTrees = ["oak9.png", "oak10.png", "oak6.png", "oak7.png", "oak8.png", "oak4.png", "oak5.png", "oak2.png", "oak.png", "oak3.png"]
     count = 0
@@ -215,7 +213,7 @@ def oakLogs():
                         continue           
 #oakLogs()
 
-
+## This function is used to cut regular logs. Not called by default
 def regularLogs():
     allTrees = ["exact.png", "exact2.png", "pinetree2.png", "exact3.png", "exact4.png", "exact5.png", "pinetree.png", "leaves.png"]
     count = 0
