@@ -3,7 +3,7 @@ import pyautogui
 import cv2
 
 
-pyautogui.FAILSAFE = True ## This enables you to cancel 
+pyautogui.FAILSAFE = True ## This enables you to cancel script execution by pressing CTRL+C or moving mouse to upper lefthand corner of screen
 
 
 ## returns back from Draynor village bank to East Port Sarim willow trees
