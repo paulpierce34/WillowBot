@@ -52,46 +52,49 @@ def returnbackBank():
 
 ## Tries to detect bank teller in draynor village
 def detectBankTeller(): 
-    bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.35)
+    #bankteller = pyautogui.locateOnScreen("bankteller3.png", confidence=0.35)
     fullinventory = pyautogui.locateOnScreen("fullinventory.png", confidence=0.8)
+    alltellers = ["bankteller3.png", "bankteller4.png"]
                     # detect bankteller
-    print ('Looking for bank teller')    
-    if (bankteller):
-        count1 = 0
-        while (count1 < 2):
-            count1 += 1
-            print('Wait...... I see the bankteller now')
-            #centerofteller = pyautogui.center(bankteller)
-            pyautogui.moveTo(bankteller, duration=1)
-            pyautogui.click()  ## This click should open up bank
-            bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5) ##  .6 works pretty well
-            time.sleep(5)
-            # detect if the bank is open
-            if (bankinventory):
-                print ('Detected bank inventory opened up')
-                pyautogui.moveTo(fullinventory, duration=1)
-                pyautogui.move(20, 50)
-                pyautogui.click(button='right')
-                pyautogui.move(0, 80)
-                pyautogui.click()
-                returnbackBank() ## call a return back function
-            else:
-                time.sleep(2)
-                count2 = 0
-                while (count2 < 2):
-                    try:
-                        count2 += 1
-                        bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5)
-                        if (bankinventory):
-                            print ('Detected bank inventory opened up')
-                            pyautogui.moveTo(fullinventory, duration=1)
-                            pyautogui.move(20, 50)
-                            pyautogui.click(button='right')
-                            pyautogui.move(0, 80)
-                            pyautogui.click()
-                            returnbackBank()
-                    except:
-                        print ('Did not detect inventory...')
+    print ('Looking for bank teller')
+    for teller in alltellers:
+        bankteller = pyautogui.locateOnScreen(teller, confidence=0.35)
+        if (bankteller):
+            count1 = 0
+            while (count1 < 2):
+                count1 += 1
+                print('Wait...... I see the bankteller now')
+                #centerofteller = pyautogui.center(bankteller)
+                pyautogui.moveTo(bankteller, duration=1)
+                pyautogui.click()  ## This click should open up bank
+                bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5) ##  .6 works pretty well
+                time.sleep(5)
+                # detect if the bank is open
+                if (bankinventory):
+                    print ('Detected bank inventory opened up')
+                    pyautogui.moveTo(fullinventory, duration=1)
+                    pyautogui.move(20, 50)
+                    pyautogui.click(button='right')
+                    pyautogui.move(0, 80)
+                    pyautogui.click()
+                    returnbackBank() ## call a return back function
+                else:
+                    time.sleep(2)
+                    count2 = 0
+                    while (count2 < 2):
+                        try:
+                            count2 += 1
+                            bankinventory = pyautogui.locateOnScreen("bankinventory.png", confidence=0.5)
+                            if (bankinventory):
+                                print ('Detected bank inventory opened up')
+                                pyautogui.moveTo(fullinventory, duration=1)
+                                pyautogui.move(20, 50)
+                                pyautogui.click(button='right')
+                                pyautogui.move(0, 80)
+                                pyautogui.click()
+                                returnbackBank()
+                        except:
+                            print ('Did not detect inventory...')
                                     
 
 
