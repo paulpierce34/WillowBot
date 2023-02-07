@@ -25,3 +25,4 @@ The banking function created in this script will only work if you execute the sc
 
 **TIPS:**
 - If you're having trouble with accuracy, try to imitate the screen resolution/zoom/camera angle shown in the above youtube video. This is extremely important for script functionality! Also, while not mandatory, having sprint enabled makes script much more smooth. This is by no means a finished product, but it's a start!
+- Script must be executed in East Port Sarim while standing next to the Willow Trees in order to work properly
