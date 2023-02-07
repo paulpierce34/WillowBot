@@ -145,11 +145,21 @@ def willowbankRun():
                     detectBankTeller()
                 #If we've already moved near the bank, and we still can't detect it, what the fook, lets trace our steps backwards a little and try to get close enough to detect bank
                 if (count == 1):
-                    print ('Weird that I cant detect bank still. Moving back...')
+                    print ('Adjusting minimap direction to see the bank')
                     pyautogui.move(0, 35)
                     pyautogui.move(-135, -90)
                     pyautogui.click()
                     count += 1
+                    if (banklocation):
+                        print(f'True...... I see the bank.. Moving to {bankpic}')
+                        pyautogui.moveTo(banklocation, duration=1)
+                        pyautogui.click()
+                        time.sleep(16)
+                        detectBankTeller() ## Try to detect bank teller
+                    else:
+                        print ("Unable to detect bank location. Sleeping and retrying.")
+                        detectBankTeller()
+                        time.sleep(3)
                     
             
     else:
@@ -176,7 +186,8 @@ def willowTrees():
                 pyautogui.moveTo(centeroftree, duration=1)
                 pyautogui.click()
                 time.sleep(16)
-                 ## Break out of for loop so we restart the process and begin searching for first pic in array
+                del treelocation ## clear variable so it doesn't remember the location of the previous successful tree
+                ## Break out of for loop so we restart the process and begin searching for first pic in array
                 break
             else:
                 print("None found, searching and waiting for more.. moving eventually")
