@@ -6,7 +6,9 @@ https://www.youtube.com/watch?v=Ip6CktKNvgI
 
 
 🚫 No third-party client
+
 🚫 No plugins
+
 🚫 No bans reported yet
 
 **NOTE:** 
