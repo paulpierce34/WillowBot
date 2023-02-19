@@ -5,6 +5,10 @@ Proof of concept found here:
 https://www.youtube.com/watch?v=Ip6CktKNvgI
 
 
+🚫 No third-party client
+🚫 No plugins
+🚫 No bans reported yet
+
 **NOTE:** 
 The banking function created in this script will only work if you execute the script while standing in East Port Sarim next to the willow trees. Other than that, script will only work for woodcutting in other locations.
 
